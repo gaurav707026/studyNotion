@@ -1,20 +1,20 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-// import { useDispatch } from "react-redux"
-// import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
-// import { sendOtp } from "../../../services/operations/authAPI"
-// import { setSignupData } from "../../../slices/authSlice"
-// import { ACCOUNT_TYPE } from "../../../utils/constants"
-// import Tab from "../../common/Tab"
+import { sendOtp } from "../../../services/operations/authAPI"
+import { setSignupData } from "../../../slices/authSlice"
+import { ACCOUNT_TYPE } from "../../../utils/constants"
+import Tab from "./Tab"
 
 function SignupForm() {
-  // const navigate = useNavigate()
-  // const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   // student or instructor
-  // const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
+  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -47,14 +47,14 @@ function SignupForm() {
     }
     const signupData = {
       ...formData,
-      // accountType,
+      accountType,
     }
     console.log(signupData);
     // Setting signup data to state
     // To be used after otp verification
-    // dispatch(setSignupData(signupData))
+    dispatch(setSignupData(signupData))
     // Send OTP to user for verification
-    // dispatch(sendOtp(formData.email, navigate))
+    dispatch(sendOtp(formData.email, navigate))
 
     // Reset
     setFormData({
@@ -64,27 +64,27 @@ function SignupForm() {
       password: "",
       confirmPassword: "",
     })
-    // setAccountType(ACCOUNT_TYPE.STUDENT)
+    setAccountType(ACCOUNT_TYPE.STUDENT)
   }
 
   // data to pass to Tab component
-  // const tabData = [
-  //   {
-  //     id: 1,
-  //     tabName: "Student",
-  //     type: ACCOUNT_TYPE.STUDENT,
-  //   },
-  //   {
-  //     id: 2,
-  //     tabName: "Instructor",
-  //     type: ACCOUNT_TYPE.INSTRUCTOR,
-  //   },
-  // ]
+  const tabData = [
+    {
+      id: 1,
+      tabName: "Student",
+      type: ACCOUNT_TYPE.STUDENT,
+    },
+    {
+      id: 2,
+      tabName: "Instructor",
+      type: ACCOUNT_TYPE.INSTRUCTOR,
+    },
+  ]
 
   return (
     <div>
       {/* Tab */}
-      {/* <Tab tabData={tabData} field={accountType} setField={setAccountType} /> */}
+      <Tab tabData={tabData} field={accountType} setField={setAccountType} />
       {/* Form */}
       <form onSubmit={handleOnSubmit} className="flex w-full flex-col gap-y-4">
         <div className="flex gap-x-4">

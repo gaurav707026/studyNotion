@@ -33,7 +33,7 @@ exports.resetPasswordToken = async (req, res) => {
         );
     
         // create password reset url
-        const url = `http://localhost:3000/update-password/${token}`
+        const url = `http://localhost:5173/reset-password/${token}`
     
         // send mail
         await mailSender(email, "Password reset link | StudyNotion", `password reset link: ${url}`);

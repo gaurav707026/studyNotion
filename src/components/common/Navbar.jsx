@@ -25,7 +25,7 @@ function Navbar() {
     try {
       const result = await apiConnector("GET", categories.CATEGORIES_API);
       setSubLinks(result.data);
-      console.log(result.data);
+      // console.log(result.data);
     } catch (err) {
       console.log(err);
       console.log("could not fetch category");
@@ -34,9 +34,6 @@ function Navbar() {
   useEffect(() => {
     fetchSubLink();
   }, []);
-  useEffect(() => {
-    console.log(subLinks); // Logs subLinks after they are updated
-  }, [subLinks]);
 
   function matchRoute(route) {
     return matchPath({ path: route }, location.pathname);
@@ -44,6 +41,7 @@ function Navbar() {
   return (
     <div className="flex h-14 items-center justify-center border-b-[1px] border-b-richblack-500">
       <div className="flex w-11/12 max-w-maxContent items-center justify-between">
+        {/* logo */}
         <Link to="/">
           <img
             src={logo}
@@ -65,12 +63,15 @@ function Navbar() {
                       <IoIosArrowDown />
                     </div>
                     <div className="absolute invisible flex flex-col items-center  transition-all group-hover:visible group-hover:z-50">
-                      <VscTriangleUp size="32px" className="z-30"/>
+                      <VscTriangleUp size="32px" className="z-30" />
                       <div className="bg-richblack-25 text-richblack-700 flex flex-col justify-center px-2 py-3 z-30 gap-2 -mt-[10px] rounded-md">
                         {subLinks.length != 0 ? (
                           subLinks.map((subLink, subIndex) => (
-                            <Link key={subIndex} to={`/category/${subLink._id}`}>
-                              <p className= "px-6 py-2 rounded-md hover:bg-richblack-700 hover:text-richblack-25">
+                            <Link
+                              key={subIndex}
+                              to={`/category/${subLink._id}`}
+                            >
+                              <p className="px-6 py-2 rounded-md hover:bg-richblack-700 hover:text-richblack-25">
                                 {subLink.name}
                               </p>
                             </Link>
@@ -109,6 +110,7 @@ function Navbar() {
               )}
             </Link>
           )}
+          {/* login button */}
           {token === null && (
             <Link to={`/login`}>
               <button
@@ -120,6 +122,8 @@ function Navbar() {
               </button>
             </Link>
           )}
+
+          {/* signup button */}
           {token === null && (
             <Link to="/signup">
               <button
@@ -131,6 +135,8 @@ function Navbar() {
               </button>
             </Link>
           )}
+          
+          {/* dashboard */}
           {token != null && <ProfileDropDown />}
         </div>
       </div>

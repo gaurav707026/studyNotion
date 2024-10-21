@@ -21,6 +21,6 @@ router.put("/changepassword", auth, changePassword);
 // password reset route---------------------------------------------------------------
 
 router.post("/reset-password-token", resetPasswordToken);
-router.put("/reset-password", resetPassword);
+router.put("/reset-password/:id", resetPassword);
 
 module.exports = router;
