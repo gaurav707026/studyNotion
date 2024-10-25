@@ -126,7 +126,7 @@ function Home() {
             }}
             codeblock={`#include <bits/>stdc++.h>
                 using namespace std;
-                // develped by gaurav kumar
+                // developed by gaurav kumar
                 int main() {
                 \u00A0\u00A0\u00A0 cout << "Hello, guys!" << endl;
                 \u00A0\u00A0\u00A0 cout << "This website is designed for the

@@ -8,6 +8,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import UpdatePassword from "./pages/UpdatePassword";
 import Error from "./pages/Error";
+import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
@@ -58,6 +60,22 @@ function App() {
           element={
             <OpenRoute>
               <UpdatePassword />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <OpenRoute>
+              <About />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <OpenRoute>
+              <ContactUs />
             </OpenRoute>
           }
         />

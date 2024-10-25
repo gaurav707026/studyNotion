@@ -8,6 +8,7 @@ const userRoute = require("./routes/User")
 const profileRoute = require("./routes/Profile")
 const paymentRoute = require("./routes/Payment")
 const courseRoute = require("./routes/Course")
+const contactRoute = require("./routes/Contact")
 
 const database = require("./config/database");
 const cookieParser = require("cookie-parser");
@@ -46,6 +47,7 @@ app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/profile", profileRoute);
 app.use("/api/v1/payment", paymentRoute);
 app.use("/api/v1/course", courseRoute);
+app.use("/api/v1/contact", contactRoute);
 
 
 // default route

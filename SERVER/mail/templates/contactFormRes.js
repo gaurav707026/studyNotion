@@ -1,10 +1,9 @@
 exports.contactUsEmail = (
-    email,
     firstname,
     lastname,
+    email,
+    phone,
     message,
-    phoneNo,
-    countrycode
   ) => {
     return `<!DOCTYPE html>
     <html>
@@ -84,7 +83,7 @@ exports.contactUsEmail = (
                 <p>Here are the details you provided:</p>
                 <p>Name: ${firstname} ${lastname}</p>
                 <p>Email: ${email}</p>
-                <p>Phone Number: ${phoneNo}</p>
+                <p>Phone Number: ${phone}</p>
                 <p>Message: ${message}</p>
                 <p>We appreciate your interest and will get back to you shortly. </p>
             </div>
