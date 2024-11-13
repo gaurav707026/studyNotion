@@ -2,9 +2,10 @@ import { toast } from "react-hot-toast"
 
 import { setLoading, setToken } from "../../slices/authSlice"
 // import { resetCart } from "../../slices/cartSlice"
-import { setUser } from "../../slices/profileSlice"
+import { setAdditionalDetails, setUser } from "../../slices/profileSlice"
 import { apiConnector } from "../apiconnector"
 import { authEndPoints } from "../apis";
+import { profileEndpoint } from "../apis";
 
 const {
   SENDOTP_API,
@@ -12,7 +13,9 @@ const {
   LOGIN_API,
   RESETPASSTOKEN_API,
   RESETPASSWORD_API,
-} = authEndPoints
+} = authEndPoints;
+
+const {  GET_USER_DETAILS } = profileEndpoint;
 
 export function sendOtp(email, navigate) {
   return async (dispatch) => {
@@ -92,18 +95,17 @@ export function login(email, password, navigate) {
         email,
         password,
       })
-
       console.log("LOGIN API RESPONSE............", response)
 
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
 
-      toast.success("Login Successful")
+      toast.success("Login Successful")      
       dispatch(setToken(response.data.token))
       const userImage = response.data?.user?.image
-        ? response.data.user.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName}%20${response.data.user.lastName}`
+      ? response.data.user.image
+      : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName}%20${response.data.user.lastName}`
       dispatch(setUser({ ...response.data.user, image: userImage }))
       
       localStorage.setItem("token", JSON.stringify(response.data.token))
@@ -173,6 +175,25 @@ export function resetPassword(password, confirmPassword, token, navigate) {
     catch(error) {
       console.log("RESET PASSWORD TOKEN Error", error);
       toast.error("Unable to reset password");
+    }
+    dispatch(setLoading(false));
+  }
+}
+export function getUserDetails(user){
+  return async(dispatch) => {
+    dispatch(setLoading(true));
+    console.log(GET_USER_DETAILS);
+    try{
+      const response = await apiConnector("GET", GET_USER_DETAILS, {user});
+      console.log("GET USER DETAILS RESPONSE....", response);
+      if(!response.data.success) {
+        throw new Error(response.data.message);
+      }
+      dispatch(setAdditionalDetails(response.data.data));
+      localStorage.setItem("additionalDetails",JSON.stringify(response.data.data))
+    }
+    catch(error) {
+      console.log("GET USER DETAILS ERROR", error);
     }
     dispatch(setLoading(false));
   }

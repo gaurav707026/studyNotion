@@ -12,7 +12,7 @@ const authSlice = createSlice({
         setSignupData(state, value) {
             state.signupData = value.payload;
           },
-          setLoading(state, value) {
+        setLoading(state, value) {
             state.loading = value.payload;
           },
         setToken: (state, value) => {
