@@ -38,7 +38,7 @@ function Sidebar() {
     }
 
   return (
-    <div>
+    <div className="w-screen flex">
         <div className="flex min-w-[222px] flex-col border-r-[1px] border-r-richblack-700
         h-[calc(100vh-3.5rem)] bg-richblack-800 py-10 sticky">
             <div className="flex flex-col ">
@@ -52,9 +52,9 @@ function Sidebar() {
                     })
                 }
             </div>
-            <div className="mx-auto my-2 h-[1px] w-10/12 bg-richblack-600"></div>
+            <div className=" my-2 h-[1px] w-10/12 bg-richblack-600"></div>
             <div className="flex flex-col">
-                <SidebarLink link={{name: "Settings", path:"dashboard/settings"}} iconName={"VscSettingsGear"}/>
+                <SidebarLink link={{name: "Settings", path:"/dashboard/settings"}} iconName={"VscSettingsGear"}/>
                 <button className="text-sm font-medium text-richblack-300"
                 onClick={clickHandler}>
                     <div className=" flex items-center gap-x-2 text-richblack-500 font-semibold ml-8 mt-2">
@@ -65,7 +65,9 @@ function Sidebar() {
             </div>
 
         </div>
-        {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
+        <div className="w-full flex justify-center items-center">
+            {confirmationModal && <ConfirmationModal modalData={confirmationModal}/>}
+        </div>
     </div>
   )
 }

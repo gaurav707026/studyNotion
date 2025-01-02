@@ -188,15 +188,14 @@ exports.getAllEnrolledCourses = async (req, res) => {
           path: "subSection",
         },
       },
-    });
+    }).exec();
     // validate userDetails
     if (!userDetails) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
-    }
-
+    };
     userDetails = userDetails.toObject();
     var SubsectionalLength = 0;
     for (var i = 0; i < userDetails.courses.length; i++) {

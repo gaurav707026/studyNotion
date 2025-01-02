@@ -104,7 +104,7 @@ function Navbar() {
         <div className="flex gap-x-4 items-center ">
           {user && user?.accountType != "Instructor" && (
             <Link to={`/dashboard/cart`}>
-              <AiOutlineShoppingCart />
+              <AiOutlineShoppingCart className="text-white font-bold text-xl"/>
               {totalItems > 0 && (
                 <span className="text-red-500 font-bold">{totalItems}</span>
               )}
