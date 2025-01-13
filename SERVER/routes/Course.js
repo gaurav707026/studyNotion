@@ -8,6 +8,10 @@ const {
   createCourse,
   getAllCourses,
   getCourseDetails,
+  editCourse,
+  getFullCourseDetails,
+  getInstructorCourses,
+  deleteCourse
 } = require("../controllers/Course");
 
 // categrorise controller
@@ -52,7 +56,10 @@ const {
 // course router----------------------------------------------------------------
 // course can only be created by a instructor
 
-router.post("/course", auth, isInstructor, createCourse);
+router.post("/createCourse", auth, isInstructor, createCourse);
+
+// get full course details
+
 
 // add a section to a course
 router.post("/addSection", auth, isInstructor, createSection);
@@ -76,6 +83,22 @@ router.get("/getAllCourses", getAllCourses);
 // get course details for a specific course
 
 router.post("/getCourseDetails", getCourseDetails);
+
+// get details for a specific course
+
+router.post("/getFullCourseDetails", auth, getFullCourseDetails);
+
+// edit a course
+
+router.post("/editCourse", auth, isInstructor, editCourse);
+
+// get instructor courses
+
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
+
+// delete a course
+
+router.delete("/deleteCourse", auth, isInstructor, deleteCourse);
 
 // update sub Section
 
